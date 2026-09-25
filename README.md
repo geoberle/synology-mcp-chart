@@ -40,3 +40,12 @@ All available values:
 | `resources.requests.cpu` | `100m` | CPU request |
 | `resources.requests.memory` | `128Mi` | Memory request |
 | `resources.limits.memory` | `256Mi` | Memory limit |
+
+## Known upstream issue
+
+`mcp-synology` 0.5.x declares `mcp>=1.0` but still uses the v1
+`mcp.server.fastmcp.FastMCP` API, which was renamed/removed in `mcp` 2.0.
+`uvx` resolves the newest `mcp` satisfying that constraint, so a bare
+`uvx mcp-synology serve` crashes with `ModuleNotFoundError: mcp.server.fastmcp`.
+The chart works around this by invoking `uvx --with "mcp<2" mcp-synology serve`.
+Drop the pin once upstream tightens its `mcp` dependency.
