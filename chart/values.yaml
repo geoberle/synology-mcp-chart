@@ -7,11 +7,10 @@ service:
   port: 3002
 
 synology:
-  host: ""
-  port: 5000
-  https: false
+  url: ""
   username: ""
   password: ""
+  verifySsl: false
 
 resources:
   requests:

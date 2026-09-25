@@ -29,27 +29,13 @@ spec:
             - "--host=0.0.0.0"
             - "--port={{ .Values.service.port }}"
             - "--"
-            - "uvx"
-            - "--with"
-            - "mcp<2"
-            - "mcp-synology"
-            - "serve"
+            - "mcp-server-synology"
           env:
-            - name: SYNOLOGY_HOST
+            - name: SYNOLOGY_URL
               valueFrom:
                 secretKeyRef:
                   name: {{ .Chart.Name }}-credentials
-                  key: host
-            - name: SYNOLOGY_PORT
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Chart.Name }}-credentials
-                  key: port
-            - name: SYNOLOGY_HTTPS
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Chart.Name }}-credentials
-                  key: https
+                  key: url
             - name: SYNOLOGY_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -60,6 +46,11 @@ spec:
                 secretKeyRef:
                   name: {{ .Chart.Name }}-credentials
                   key: password
+            - name: VERIFY_SSL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Chart.Name }}-credentials
+                  key: verifySsl
           ports:
             - name: mcp
               containerPort: {{ .Values.service.port }}
