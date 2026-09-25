@@ -30,6 +30,7 @@ spec:
             - "--pass-environment"
             - "--host=0.0.0.0"
             - "--port={{ .Values.service.port }}"
+            - "--"
             - "uvx"
             - "--with"
             - "mcp<2"
