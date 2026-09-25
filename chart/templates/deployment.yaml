@@ -32,12 +32,23 @@ spec:
             - "--port={{ .Values.service.port }}"
             - "uvx"
             - "mcp-synology"
+            - "serve"
           env:
             - name: SYNOLOGY_HOST
               valueFrom:
                 secretKeyRef:
                   name: {{ .Chart.Name }}-credentials
                   key: host
+            - name: SYNOLOGY_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Chart.Name }}-credentials
+                  key: port
+            - name: SYNOLOGY_HTTPS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Chart.Name }}-credentials
+                  key: https
             - name: SYNOLOGY_USERNAME
               valueFrom:
                 secretKeyRef:

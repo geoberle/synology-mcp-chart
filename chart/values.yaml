@@ -8,6 +8,8 @@ service:
 
 synology:
   host: ""
+  port: 5000
+  https: false
   username: ""
   password: ""
 
