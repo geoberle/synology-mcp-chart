@@ -4,6 +4,10 @@ Helm chart for deploying [mcp-synology](https://pypi.org/project/mcp-synology/) 
 
 Exposes a Synology NAS MCP server over SSE that AI agents (e.g. Hermes) can use for file management and system monitoring.
 
+The pod uses normal cluster networking (`ClusterIP` Service, no `hostNetwork`)
+— reach it from another workload at
+`http://synology-mcp-chart.<namespace>.svc.cluster.local:3002/sse`.
+
 ## Install
 
 ```bash

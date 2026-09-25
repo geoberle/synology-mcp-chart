@@ -20,8 +20,6 @@ spec:
       annotations:
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: mcp-server
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
