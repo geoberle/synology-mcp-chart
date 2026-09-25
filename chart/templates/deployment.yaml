@@ -55,5 +55,12 @@ spec:
             - name: mcp
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /status
+              port: mcp
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            failureThreshold: 3
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
